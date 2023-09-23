@@ -1,0 +1,29 @@
+.match {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .match h3 {
+    margin-top: 0;
+    margin-bottom: 5px;
+  }
+  
+  .match ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 10px;
+  }
+  
+  .match li {
+    margin-bottom: 5px;
+  }
+  
+  .match button {
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+  }

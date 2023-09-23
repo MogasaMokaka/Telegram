@@ -5,7 +5,11 @@ const pool = mariadb.createPool({
   user: 'root',
   password: '',
   database: 'github',
-  connectionLimit: 5, // Adjust as needed
+  connectionLimit: 5,
 });
 
-module.exports = pool;
+async function getConnection() {
+  return await pool.getConnection();
+}
+
+module.exports = { getConnection };
