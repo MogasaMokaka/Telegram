@@ -10,12 +10,17 @@ function FavoriteMatches(props) {
   return (
     <div className="favorite-matches">
       <h2>Favorite Matches</h2>
-      {props.favoriteMatches.length > 0 ? (
-        props.favoriteMatches.map(match => (
-          <Match key={match.id} {...match} onRemoveFavorite={handleRemoveFavorite} />
-        ))
+      {props.matches.length > 0 ? (
+        <ul>
+          {props.matches.map(match => (
+            <li key={match.id}>
+              <Match {...match} />
+              <button onClick={() => handleRemoveFavorite(match)}>Remove</button>
+            </li>
+          ))}
+        </ul>
       ) : (
-        <p>No favorite matches yet.</p>
+        <p>No favorite matches yet</p>
       )}
     </div>
   );

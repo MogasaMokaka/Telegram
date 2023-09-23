@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
+import ProfileForm from './ProfileForm';
 import Profile from './Profile';
 import MatchList from './MatchList';
-import ProfileForm from './ProfileForm';
 import FavoriteMatches from './FavoriteMatches';
 import './App.css';
 
@@ -29,16 +29,10 @@ function App() {
 
   return (
     <div className="app">
-      <h1>My Dating App</h1>
-      {profile ? (
-        <div>
-          <Profile {...profile} />
-          <MatchList matches={matches} onAddFavorite={handleAddFavorite} />
-          <FavoriteMatches favoriteMatches={favoriteMatches} onRemoveFavorite={handleRemoveFavorite} />
-        </div>
-      ) : (
-        <ProfileForm onSubmit={handleProfileSubmit} />
-      )}
+      {!profile && <ProfileForm onSubmit={handleProfileSubmit} />}
+      {profile && <Profile profile={profile} />}
+      {profile && <MatchList matches={matches} onAddFavorite={handleAddFavorite} />}
+      {favoriteMatches.length > 0 && <FavoriteMatches matches={favoriteMatches} onRemoveFavorite={handleRemoveFavorite} />}
     </div>
   );
 }
