@@ -1,23 +1,29 @@
 import React, { useState } from 'react';
-import './ProfileForm.css';
-import axios from 'axios';
 
-function ProfileForm(props) {
+const ProfileForm = ({ onSubmit }) => {
   const [name, setName] = useState('');
   const [age, setAge] = useState('');
   const [location, setLocation] = useState('');
   const [interests, setInterests] = useState('');
+  const [error, setError] = useState('');
 
-  const handleSubmit = async event => {
+  const handleSubmit = event => {
     event.preventDefault();
-    const newProfile = { name, age, location, interests: interests.split(',') };
-    const response = await axios.post('/api/profiles', newProfile);
-    props.onSubmit({ id: response.data.id, ...newProfile });
+
+    // Check if any inputs are empty
+    if (!name || !age || !location || !interests) {
+      // Display error message
+      setError('Please fill in all fields.');
+    } else {
+      // Submit form data
+      onSubmit({ name, age, location, interests });
+    }
   };
 
   return (
     <div className="profile-form">
       <h2>Create Your Profile</h2>
+      {error && <p className="error">{error}</p>}
       <form onSubmit={handleSubmit}>
         <label>
           Name:
@@ -40,6 +46,6 @@ function ProfileForm(props) {
       </form>
     </div>
   );
-}
+};
 
 export default ProfileForm;
